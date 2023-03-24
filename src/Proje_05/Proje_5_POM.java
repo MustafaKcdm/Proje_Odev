@@ -53,13 +53,13 @@ public class Proje_5_POM extends BaseDriverParameter {
 
        }
 
-       @Test(priority = 6)
+       @Test(priority = 2)
     void addCustomer(){
            CaseWebElements cwe = new CaseWebElements();
            cwe.customersOne.click();
            cwe.customersTwo.click();
            cwe.addNew.click();
-           cwe.email.sendKeys("2study3@gmail.com");
+           cwe.email.sendKeys("124study3@gmail.com");
            cwe.password.sendKeys("123123");
            cwe.firstName.sendKeys("yunus");
            cwe.lastNamecustmr.sendKeys("demir");
@@ -72,13 +72,11 @@ public class Proje_5_POM extends BaseDriverParameter {
        @Test(priority = 3)
     void editCustomer(){
            CaseWebElements cwe = new CaseWebElements();
-           cwe.customersOne.click();
-           cwe.customersTwo.click();
             cwe.searchButtonFirst.click();
             Tools.Bekle(1);
             cwe.firstNamesearch.sendKeys("yunus");
             cwe.lastNameSrc.sendKeys("demir");
-            cwe.emailsearch.sendKeys("2study3@gmail.com");
+            cwe.emailsearch.sendKeys("124study3@gmail.com");
             cwe.searchButton.click();
             Assert.assertTrue(cwe.validationsearch.isDisplayed(),"TEST FAILED");
             cwe.editButton.click();
@@ -92,12 +90,12 @@ public class Proje_5_POM extends BaseDriverParameter {
        @Test(priority = 4)
     void deleteCustomer(){
            CaseWebElements cwe = new CaseWebElements();
-           cwe.customersOne.click();
-           cwe.customersTwo.click();
-           cwe.searchButtonFirst.click();
+//           cwe.customersOne.click();
+//           cwe.customersTwo.click();
+//           cwe.searchButtonFirst.click();
            cwe.firstNamesearch.sendKeys("enes");
            cwe.lastNameSrc.sendKeys("demir");
-           cwe.emailsearch.sendKeys("study3@gmail.com");
+           cwe.emailsearch.sendKeys("124study3@gmail.com");
            cwe.searchButton.click();
            cwe.editButton.click();
            cwe.delete.click();
