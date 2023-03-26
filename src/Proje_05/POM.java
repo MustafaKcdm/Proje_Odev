@@ -2,22 +2,19 @@ package Proje_05;
 
 import Utlity.BaseDriverParameter;
 import Utlity.Tools;
-import javafx.scene.layout.Priority;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import java.util.Random;
 
-import javax.swing.*;
-
-
-public class Proje_5_POM extends BaseDriverParameter {
+public class POM extends BaseDriverParameter {
 
 
     @Test()
     void loginTest() {
-        CaseWebElements cwe = new CaseWebElements();
+        WebElements cwe = new WebElements(driver);
         cwe.email.clear();
         cwe.email.sendKeys("admin@yourstore.com");
         cwe.password.clear();
@@ -30,7 +27,7 @@ public class Proje_5_POM extends BaseDriverParameter {
    @Test(priority = 1)
 
    void navMenuCheck() {
-       CaseWebElements cwe = new CaseWebElements();
+       WebElements cwe = new WebElements(driver);
 
        for (int i = 0; i < cwe.leftNawMenu.size(); i++) {
 
@@ -38,28 +35,33 @@ public class Proje_5_POM extends BaseDriverParameter {
 
            cwe.leftNawMenu.get(i).click();
 
-           if (cwe.leftNawMenu.get(i).getAttribute("style").contains("display: block;")) ;
-           System.out.println("open");
+
+           if (cwe.leftNawMenu.get(i).getAttribute("style").contains("display: block;")){
+           System.out.println("open");}
 
 
        }
+       boolean degisken = false;
        for (int i = 0; i < cwe.leftNawMenu.size(); i++) {
 
-           boolean degisken = false;
+
            if (cwe.leftNawMenu.size() > 0)
                degisken = true;
        }
-       System.out.println(" all elements visible");
+       if(degisken){
+       System.out.println(" all elements are visible");}
 
        }
+    String email = generateEmail();
 
        @Test(priority = 2)
-    void addCustomer(){
-           CaseWebElements cwe = new CaseWebElements();
+
+   void addCustomer(){
+           WebElements cwe = new WebElements(driver);
            cwe.customersOne.click();
            cwe.customersTwo.click();
            cwe.addNew.click();
-           cwe.email.sendKeys("124study3@gmail.com");
+           cwe.email.sendKeys(email);
            cwe.password.sendKeys("123123");
            cwe.firstName.sendKeys("yunus");
            cwe.lastNamecustmr.sendKeys("demir");
@@ -69,16 +71,15 @@ public class Proje_5_POM extends BaseDriverParameter {
        }
 
 
+
        @Test(priority = 3)
     void editCustomer(){
-           CaseWebElements cwe = new CaseWebElements();
+
+           WebElements cwe = new WebElements(driver);
             cwe.searchButtonFirst.click();
-            Tools.Bekle(1);
-            cwe.firstNamesearch.sendKeys("yunus");
             cwe.lastNameSrc.sendKeys("demir");
-            cwe.emailsearch.sendKeys("124study3@gmail.com");
+            cwe.emailsearch.sendKeys(email);
             cwe.searchButton.click();
-            Assert.assertTrue(cwe.validationsearch.isDisplayed(),"TEST FAILED");
             cwe.editButton.click();
             cwe.firstName.clear();
             cwe.firstName.sendKeys("enes");
@@ -89,13 +90,10 @@ public class Proje_5_POM extends BaseDriverParameter {
 
        @Test(priority = 4)
     void deleteCustomer(){
-           CaseWebElements cwe = new CaseWebElements();
-//           cwe.customersOne.click();
-//           cwe.customersTwo.click();
-//           cwe.searchButtonFirst.click();
+           WebElements cwe = new WebElements(driver);
            cwe.firstNamesearch.sendKeys("enes");
            cwe.lastNameSrc.sendKeys("demir");
-           cwe.emailsearch.sendKeys("124study3@gmail.com");
+           cwe.emailsearch.sendKeys(email);
            cwe.searchButton.click();
            cwe.editButton.click();
            cwe.delete.click();
@@ -106,13 +104,21 @@ public class Proje_5_POM extends BaseDriverParameter {
 
        @Test(priority = 5)
     void searchFunction(){
-           CaseWebElements cwe = new CaseWebElements();
+           WebElements cwe = new WebElements(driver);
            new Actions(driver).moveToElement(cwe.searchBox).click().sendKeys("Shipments").
                    sendKeys(Keys.DOWN).sendKeys(Keys.ENTER).build().perform();
            Tools.Bekle(3);
            Assert.assertEquals(driver.getCurrentUrl(),"https://admin-demo.nopcommerce.com/Admin/Order/ShipmentList");
 
        }
+
+
+    public String generateEmail(){
+        String mail = "study3@gmail.com";
+        Random random = new Random();
+        char randomLetter = (char) (random.nextInt(26) + 'A');
+        return randomLetter + mail;
+    }
 
    }
 

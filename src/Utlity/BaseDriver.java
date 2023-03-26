@@ -35,7 +35,7 @@ public class BaseDriver {
 
         wait=new WebDriverWait(driver,
                 Duration.ofSeconds(30));
-        driver.get("https://admin-demo.nopcommerce.com/login");
+
         //loginTest();
     }
 
