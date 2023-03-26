@@ -19,98 +19,98 @@ public class POM extends BaseDriverParameter {
         cwe.email.sendKeys("admin@yourstore.com");
         cwe.password.clear();
         cwe.password.sendKeys("admin");
-        cwe.loginButton.click();
-        Assert.assertTrue(cwe.Validation.getText().contains("Dashboard"));
+        cwe.loginbutton.click();
+        Assert.assertTrue(cwe.Validationlogin.getText().contains("Dashboard"));
     }
 
 
-   @Test(priority = 1)
+    @Test(priority = 1)
 
-   void navMenuCheck() {
-       WebElements cwe = new WebElements(driver);
+    void navMenuCheck() {
+        WebElements cwe = new WebElements(driver);
 
-       for (int i = 0; i < cwe.leftNawMenu.size(); i++) {
+        for (int i = 0; i < cwe.leftNawMenu.size(); i++) {
 
-           wait.until(ExpectedConditions.elementToBeClickable(cwe.leftNawMenu.get(i)));
+            wait.until(ExpectedConditions.elementToBeClickable(cwe.leftNawMenu.get(i)));
 
-           cwe.leftNawMenu.get(i).click();
-
-
-           if (cwe.leftNawMenu.get(i).getAttribute("style").contains("display: block;")){
-           System.out.println("open");}
+            cwe.leftNawMenu.get(i).click();
 
 
-       }
-       boolean degisken = false;
-       for (int i = 0; i < cwe.leftNawMenu.size(); i++) {
+            if (cwe.leftNawMenu.get(i).getAttribute("style").contains("display: block;")){
+                System.out.println("open");}
 
 
-           if (cwe.leftNawMenu.size() > 0)
-               degisken = true;
-       }
-       if(degisken){
-       System.out.println(" all elements are visible");}
+        }
+        boolean degisken = false;
+        for (int i = 0; i < cwe.leftNawMenu.size(); i++) {
 
-       }
+
+            if (cwe.leftNawValidation.size() > 0)
+                degisken = true;
+        }
+        if(degisken){
+            System.out.println(" all elements are visible");}
+
+    }
     String email = generateEmail();
 
-       @Test(priority = 2)
+    @Test(priority = 2)
 
-   void addCustomer(){
-           WebElements cwe = new WebElements(driver);
-           cwe.customersOne.click();
-           cwe.customersTwo.click();
-           cwe.addNew.click();
-           cwe.email.sendKeys(email);
-           cwe.password.sendKeys("123123");
-           cwe.firstName.sendKeys("yunus");
-           cwe.lastNamecustmr.sendKeys("demir");
-           cwe.dateOBirth.sendKeys("03/07/1993");
-           cwe.save.click();
-           Assert.assertTrue(cwe.validationCustomer.isDisplayed());
-       }
+    void addCustomer(){
+        WebElements cwe = new WebElements(driver);
+        cwe.customersOne.click();
+        cwe.customersTwo.click();
+        cwe.addNew.click();
+        cwe.email.sendKeys(email);
+        cwe.password.sendKeys("123123");
+        cwe.firstNameCustomer.sendKeys("yunus");
+        cwe.lastNamecustomer.sendKeys("demir");
+        cwe.dateOBirth.sendKeys("03/07/1993");
+        cwe.save.click();
+        Assert.assertTrue(cwe.validationCustomer.isDisplayed());
+    }
 
 
 
-       @Test(priority = 3)
+    @Test(priority = 3)
     void editCustomer(){
 
-           WebElements cwe = new WebElements(driver);
-            cwe.searchButtonFirst.click();
-            cwe.lastNameSrc.sendKeys("demir");
-            cwe.emailsearch.sendKeys(email);
-            cwe.searchButton.click();
-            cwe.editButton.click();
-            cwe.firstName.clear();
-            cwe.firstName.sendKeys("enes");
-            cwe.save.click();
-            Assert.assertTrue(cwe.validationsearch.isDisplayed(),"TEST FAILED");
+        WebElements cwe = new WebElements(driver);
+        cwe.firstNameSearch.click();
+        cwe.lastNameSearch.sendKeys("demir");
+        cwe.emailSearch.sendKeys(email);
+        cwe.searchButton.click();
+        cwe.edit2.click();
+        cwe.firstNameCustomer.clear();
+        cwe.firstNameCustomer.sendKeys("enes");
+        cwe.save.click();
+        Assert.assertTrue(cwe.validationSearch.isDisplayed(),"TEST FAILED");
 
-       }
+    }
 
-       @Test(priority = 4)
+    @Test(priority = 4)
     void deleteCustomer(){
-           WebElements cwe = new WebElements(driver);
-           cwe.firstNamesearch.sendKeys("enes");
-           cwe.lastNameSrc.sendKeys("demir");
-           cwe.emailsearch.sendKeys(email);
-           cwe.searchButton.click();
-           cwe.editButton.click();
-           cwe.delete.click();
-           cwe.deleteAlert.click();
-           Assert.assertTrue(cwe.validationsearch.isDisplayed(),"TEST FAILED");
+        WebElements cwe = new WebElements(driver);
+        cwe.firstNameSearch.sendKeys("enes");
+        cwe.lastNameSearch.sendKeys("demir");
+        cwe.emailSearch.sendKeys(email);
+        cwe.searchButton.click();
+        cwe.edit2.click();
+        cwe.delete.click();
+        cwe.deletebutton.click();
+        Assert.assertTrue(cwe.validationCustomer.isDisplayed(),"TEST FAILED");
 
-       }
+    }
 
-       @Test(priority = 5)
+    @Test(priority = 5)
     void searchFunction(){
-           WebElements cwe = new WebElements(driver);
-           new Actions(driver).moveToElement(cwe.searchBox).click().sendKeys("Shipments").
-                   sendKeys(Keys.DOWN).sendKeys(Keys.ENTER).build().perform();
-           Tools.Bekle(3);
-           Assert.assertEquals(driver.getCurrentUrl(),"https://admin-demo.nopcommerce.com/Admin/Order/ShipmentList");
+        WebElements cwe = new WebElements(driver);
+        new Actions(driver).moveToElement(cwe.searchBox).click().sendKeys("Shipments").
+                sendKeys(Keys.DOWN).sendKeys(Keys.ENTER).build().perform();
+        Tools.Bekle(3);
+        Assert.assertEquals(driver.getCurrentUrl(),"https://admin-demo.nopcommerce.com/Admin/Order/ShipmentList");
 
-       }
+    }
 
 
     public String generateEmail(){
@@ -120,5 +120,6 @@ public class POM extends BaseDriverParameter {
         return randomLetter + mail;
     }
 
-   }
+}
+
 

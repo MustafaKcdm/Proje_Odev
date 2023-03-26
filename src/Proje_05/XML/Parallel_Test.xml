@@ -1,8 +1,8 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="MySuit" parallel="tests" thread-count="2">
 
-    <test name="FirefoxTest" >
-        <parameter name="browserTipi" value="firefox"></parameter>
+    <test name="EdgeTest" >
+        <parameter name="browserTipi" value="edge"></parameter>
         <classes>
             <class name="Proje_05.POM"></class>
         </classes>

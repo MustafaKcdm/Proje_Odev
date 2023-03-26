@@ -1,10 +1,15 @@
 package Proje_05;
 
+import Utlity.BaseDriver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
+import java.time.Duration;
 import java.util.List;
 
 public class WebElements {
@@ -15,62 +20,101 @@ public class WebElements {
         PageFactory.initElements(driver,this);
     }
 
-    @FindBy(xpath ="//*[@id='Email']")
+    @FindBy(css = "input[id='Email']")
     public WebElement email;
+
     @FindBy(css = "input[id='Password']")
     public WebElement password;
-    @FindBy(xpath = "//*[@type='submit']")
-    public WebElement loginButton;
+
+
+    @FindBy(css = "button[type='submit']")
+    public WebElement loginbutton;
+
     @FindBy(xpath = "//h1[normalize-space()='Dashboard']")
-    public WebElement Validation;
-    @FindBy(xpath = "//*[@class='nav-item has-treeview']")
+    public WebElement Validationlogin;
+
+
+    @FindBy(css = "i[class^='nav-icon fas fa']")
     public List<WebElement> leftNawMenu;
+
+    @FindBy(css = "ul[class='nav nav-treeview']")
+    public List<WebElement> leftNawValidation;
+
+
+
+
     @FindBy(css = "i[class='nav-icon far fa-user']")
     public WebElement customersOne;
-    @FindBy(css = "i[class='nav-icon far fa-book']")
-    public WebElement catalog;
+
     @FindBy(xpath = "//*[text()=' Customers']")
     public WebElement customersTwo;
+
     @FindBy(css ="a[class='btn btn-primary']")
     public WebElement addNew;
+
+
+    @FindBy(id="Email")
+    public WebElement emailCustomer;
+    @FindBy(id="Password")
+    public WebElement passwordCustomer;
+
     @FindBy(id="FirstName")
-    public WebElement firstName;
+    public WebElement firstNameCustomer;
+
     @FindBy(id="LastName")
-    public WebElement lastNamecustmr;
+    public WebElement lastNamecustomer;
+
+    @FindBy(id="Gender_Male")
+    public WebElement male;
+
     @FindBy(id="DateOfBirth")
     public WebElement dateOBirth;
+
     @FindBy(name="save")
     public WebElement save;
     @FindBy(css ="[class='alert alert-success alert-dismissable']")
     public WebElement validationCustomer;
+
+
+
     @FindBy(id="SearchFirstName")
-    public WebElement firstNamesearch;
+    public WebElement firstNameSearch;
+
     @FindBy(id="SearchLastName")
-    public WebElement lastNameSrc;
+    public WebElement lastNameSearch;
+
     @FindBy(id="SearchEmail")
-    public WebElement emailsearch;
+    public WebElement emailSearch;
+
     @FindBy(id="search-customers")
     public WebElement searchButton;
-    @FindBy(xpath="(//td)[7]/a")
-    public WebElement editButton;
+
+
     @FindBy(xpath= "//td[text()='Registered']")
-    public WebElement validationsearch;
-    @FindBy(id="search-customers")
-    public WebElement searchButtonFirst;
+    public WebElement validationSearch;
+
     @FindBy(id = "customer-delete")
     public WebElement delete;
-    @FindBy(xpath="//button[@class='btn btn-danger float-right']")
-    public WebElement deleteAlert;
-    @FindBy(css ="input[placeholder='Search']")
+
+    @FindBy(css ="button[class='btn btn-danger float-right']")
+    public WebElement deletebutton;
+
+
+    @FindBy(css =" input[placeholder='Search']")
     public WebElement searchBox;
 
-    @FindBy(css ="//td[@class='dataTables_empty']")
-    public WebElement searchAlert;
+    @FindBy(css ="h1[class='float-left']")
+    public WebElement validationShipments;
 
 
+    @FindBy(css ="a[class='btn btn-default']")
+    public WebElement edit2;
 
+    public void messageValidation() {
+        WebDriverWait wait=new WebDriverWait(BaseDriver.driver, Duration.ofSeconds(30));
+        wait.until(ExpectedConditions.visibilityOf(validationCustomer));
+        Assert.assertTrue(validationCustomer.getText().contains("success"));
 
-
-
+    }
 
 }

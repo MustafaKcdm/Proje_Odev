@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
@@ -27,9 +28,9 @@ public class BaseDriverParameter {
         logger.setLevel(Level.SEVERE);
 
 
-        if (browserSelected.equalsIgnoreCase("firefox")) {
-            System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE, "/dev/null");
-            driver = new FirefoxDriver();
+        if (browserSelected.equalsIgnoreCase("edge")) {
+
+            driver = new EdgeDriver();
         } else {
             System.setProperty(ChromeDriverService.CHROME_DRIVER_SILENT_OUTPUT_PROPERTY, "true");
             ChromeOptions options = new ChromeOptions();
@@ -44,7 +45,7 @@ public class BaseDriverParameter {
 
         wait = new WebDriverWait(driver,
                 Duration.ofSeconds(30));
-        driver.get("https://admin-demo.nopcommerce.com/login");
+        driver.get("https://admin-demo.nopcommerce.com/login%22");
 
     }
 
